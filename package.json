@@ -1,0 +1,27 @@
+{
+  "name": "du-team-profile-gen-proj-8",
+  "version": "1.0.0",
+  "description": "DU project to create node cli tool for team management ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"wu tang forever\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anon123123123/du-team-profile-gen-proj-8.git"
+  },
+  "keywords": [
+    "team",
+    "generator"
+  ],
+  "author": "anon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anon123123123/du-team-profile-gen-proj-8/issues"
+  },
+  "homepage": "https://github.com/anon123123123/du-team-profile-gen-proj-8#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jest": "^27.5.1"
+  }
+}
