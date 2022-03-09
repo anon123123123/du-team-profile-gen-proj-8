@@ -4,6 +4,7 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const templateGen = require('./src/templateGen')
 
 // Questions 
 const questionsManager = [
@@ -123,7 +124,18 @@ const manager = async () => {
         return answers
     });
     const manager = await new Manager(questions.name, questions.id, questions.email, questions.officeNum)
-    return manager
+    const managerHTML = `    <section class="emp-container">
+    <section class="emp-header">
+        <h3>${manager.name}<br>&#9749; ${manager.getRole()}</h3>
+    </section>
+    <ul class="emp-details">
+        <li>ID: ${manager.id}</li>
+        <li>Email:<br> 
+            <a href="mailto:${manager.email}">${manager.email}</a></li>
+        <li>Office number: ${manager.getofficeNumber()}</li>
+    </ul>
+</section>`
+    return managerHTML
 }
 
 const menu = async () => {
@@ -136,33 +148,65 @@ const menu = async () => {
     }
     if(addTeamSelect === 'Intern') {
         let x = await internAdd()
-        console.log(x)
-        console.log(x.getRole())
-        const internHTML = ``
-        return x
+        const internHTML = `<section class="emp-container">
+        <section class="emp-header">
+            <h3>${x.name}<br> 🎓 ${x.getRole()}</h3>
+        </section>
+        <ul class="emp-details">
+            <li>ID: ${x.id}</li>
+            <li>Email:<br> 
+                <a href="mailto:${x.email}">${x.email}</a></li>
+            <li>School: ${x.getSchool()}</li>
+        </ul>
+    </section>`
+        return internHTML
     }
     if(addTeamSelect === 'Engineer') {
         let x = await engineerAdd()
-        return x
+        const engineerHTML = `<section class="emp-container">
+        <section class="emp-header">
+            <h3>${x.name}<br>💻 ${x.getRole()}</h3>
+        </section>
+        <ul class="emp-details">
+            <li>ID: ${x.id}</li>
+            <li>Email:<br> 
+                <a href="mailto:${x.email}">${x.email}</a></li>
+            <li>Github: <a href="https://github.com/${x.getGithub()}">${x.getGithub()}</li>
+        </ul>
+    </section>`
+        return engineerHTML
     } 
+}
+
+const writeHTML = async(html) => {
+    const htmlContent = await templateGen(html)
+    fs.writeFile('./dist/index.html', htmlContent, err => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        console.info('HTML File Created ./dist/index.html')
+    })
 }
 
 // Main Function 
 const main = async () => {
-    const managerObj = await manager()
+    let html = ""
+    const managerHTML = await manager()
+    html += managerHTML
     // Use while loop to get all employees 
     let moreEmployees = await menu()
-    let allEmployees = []
-    allEmployees.push(moreEmployees)
+    // The html add sections to HTML string
+    html += moreEmployees
     while (moreEmployees !== 'None') {
         moreEmployees = await menu()
         
         if(moreEmployees !== 'None') {
-            allEmployees.push(moreEmployees)
+            html += moreEmployees
         }
     }
-    console.log(managerObj)
-    console.log(allEmployees)
+
+    writeHTML(html)
 }
 
 // Init Main
