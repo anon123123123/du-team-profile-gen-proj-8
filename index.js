@@ -171,7 +171,7 @@ const menu = async () => {
             <li>ID: ${x.id}</li>
             <li>Email:<br> 
                 <a href="mailto:${x.email}">${x.email}</a></li>
-            <li>Github: <a href="https://github.com/${x.getGithub()}">${x.getGithub()}</li>
+            <li>Github: <a href="https://github.com/${x.getGithub()}">${x.getGithub()}</a></li>
         </ul>
     </section>`
         return engineerHTML
