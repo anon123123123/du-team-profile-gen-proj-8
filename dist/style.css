@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#header {
+    background-color: rgb(242, 95, 95);
+    position: top;
+    padding: 3rem;
+    text-align: center;
+    color: white;
+}
+
+.emp-container {
+    width: 18rem;
+    margin-left: 6rem;
+    margin-top: 2rem;
+    max-width: 18rem;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow:  0px 20px 12px 0 #000, 
+    0 16px 8px 0px #ccc;
+    background-color: rgb(222, 222, 222);
+}
+
+.emp-header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: rgb(104, 156, 247);
+    justify-content: left;
+    color: white;
+}
+
+.emp-header h3 {
+    margin-left: 1rem;
+}
+
+.emp-details {
+    display: block;
+}
+
+.emp-details li{
+    padding: .7rem;
+    max-width: 80%;
+    margin-left: .02rem;
+    margin-right: .02rem;
+    background-color: white;
+    border: .02rem solid rgb(152, 150, 150);
+}

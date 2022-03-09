@@ -4,7 +4,9 @@
   "description": "DU project to create node cli tool for team management ",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "jest"
+
   },
   "repository": {
     "type": "git",
